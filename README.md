@@ -1,3 +1,272 @@
+[//]: # (Language Switcher)
+<p align="right">
+  <b>Language / Dil:</b>
+  <a href="#english">English</a> |
+  <a href="#turkce">Türkçe</a>
+</p>
+
+---
+
+<a name="english"></a>
+# NitScreenRemover - Velocity Plugin
+
+## Description
+NitScreenRemover is an advanced plugin for Velocity proxy servers that **REMOVES ALL LOADING SCREENS**. It completely bypasses server switching, login waiting, ItemsAdder texture pack loading, and Mojang loading screens. Players connect **INSTANTLY** to the server and see no loading screens!
+
+## Features
+
+### 🚀 Main Features
+- **Loading Screen Removal**: Instantly removes loading screens during server switches
+- **🔥 Black Screen Removal**: Completely removes the 1-second black screen
+- **⚡ Ultra Fast Mode**: Maximum speed switching, instant world rendering
+- **🎯 Aggressive Rendering**: Aggressive world rendering and chunk preloading
+- **🚪 LOGIN ACCELERATION**: Removes login waiting time
+- **📦 INSTANT ITEMSADDER LOADING**: Texture pack loads instantly, no loading screen
+- **🛑 MOJANG BYPASS**: Completely bypasses Mojang loading screen
+- **⚡ Instant Connection**: Connects directly to the server as soon as clicked
+- **Smooth Transition**: Better UX with smooth transition effects
+- **Server Preloading**: Preloads servers in advance
+- **Custom Messages**: Customizable transition messages
+- **Debug Mode**: Advanced debugging and logging
+
+### ⚙️ Configuration
+- **Reloadable**: Change settings without restarting the server
+- **Flexible Settings**: Enable/disable each feature individually
+- **Performance Tuning**: Adjustable delay times
+
+## Installation
+
+### Requirements
+- **Velocity**: 3.2.0 or higher
+- **Java**: 11 or higher
+- **Maven**: 3.6.0 or higher (for building)
+
+### Steps
+1. **Build**:
+   ```bash
+   mvn clean package
+   ```
+2. **Install**:
+   - Copy `target/nitscreen-remover-1.0-SNAPSHOT.jar` to Velocity's `plugins` folder
+   - Restart Velocity
+3. **Configure**:
+   - `plugins/nitscreen-remover/config.properties` will be created automatically
+   - Adjust settings as needed
+
+## Usage
+
+### Commands
+| Command | Description | Permission |
+|---------|-------------|------------|
+| `/nitscreen help` | Help menu | `nitscreen.use` |
+| `/nitscreen status` | Plugin status | `nitscreen.use` |
+| `/nitscreen reload` | Reload configuration | `nitscreen.admin` |
+| `/nitscreen toggle <feature>` | Toggle feature | `nitscreen.admin` |
+| `/nitscreen test` | Loading screen test | `nitscreen.admin` |
+
+### Shortcuts
+- `/nsr` - Shortcut for `/nitscreen`
+
+### Permissions
+```yaml
+permissions:
+  nitscreen.use: true      # Basic commands
+  nitscreen.admin: false   # Admin commands
+```
+
+## Configuration
+
+### config.properties
+```properties
+# Smooth transition feature
+enable-smooth-transition=true
+# Server preloading feature
+enable-preloading=true
+# Custom messages
+enable-custom-messages=true
+# Transition delay (ms)
+transition-delay-ms=50
+# Message cleanup delay (ms)
+message-cleanup-delay-ms=2000
+# Debug mode
+enable-debug-mode=false
+# 🔥 BLACK SCREEN REMOVAL - Ultra Fast Mode
+enable-ultra-fast-mode=true
+# 🎯 Aggressive world rendering
+enable-aggressive-rendering=true
+# World render delay (ms) - Lower = Faster
+world-render-delay-ms=5
+# 🚪 LOGIN ACCELERATION - Remove login waiting
+enable-login-optimization=true
+# 📦 ITEMSADDER TEXTURE PACK - Instant loading
+enable-resource-pack-optimization=true
+# Resource pack loading delay (ms) - 0 = Instant
+resource-pack-delay-ms=1
+# 🛑 MOJANG LOADING SCREEN BYPASS - Skip Mojang screen
+enable-mojang-bypass=true
+```
+
+### Feature Descriptions
+
+#### 🎯 Smooth Transition
+- Makes server switches smooth
+- Prevents abrupt interruptions
+- Improves player experience
+
+#### ⚡ Preloading
+- Preloads servers in advance
+- Reduces transition time
+- Performance optimization
+
+#### 💬 Custom Messages
+- Customizable transition messages
+- Visual feedback system
+- Player notification
+
+#### 🐛 Debug Mode
+- Detailed logging
+- Debugging information
+- Advanced monitoring
+
+#### 🔥 Ultra Fast Mode
+- Maximum speed server switching
+- Black screen completely removed
+- 1 second > 0.05 second transition
+- Instant world rendering
+
+#### 🎯 Aggressive Rendering
+- Aggressive world rendering packages
+- Chunk preloading optimization
+- Camera unlock system
+- Force world visible
+
+#### 🚪 Login Acceleration
+- Login waiting time removed
+- Mojang loading screen bypass
+- Instant login process
+- Direct server connection
+
+#### 📦 Instant ItemsAdder Loading
+- No texture pack loading screen
+- Resource pack loads instantly
+- ItemsAdder optimization
+- Progress bar bypass
+
+#### 🛑 Mojang Bypass
+- Mojang loading screen completely skipped
+- Client state force
+- Immediate login signal
+- Skip all Mojang delays
+
+## Technical Details
+
+### How It Works
+1. **Event Detection**: Listens to `PostLoginEvent`, `ServerPreConnectEvent`, and `ServerConnectedEvent`
+2. **🚪 Login Optimization**: Immediate bypass during player login
+3. **🛑 Mojang Bypass**: Completely skips Mojang loading screen
+4. **📦 Resource Pack Instant**: ItemsAdder texture pack loads instantly
+5. **Loading Screen Removal**: Sends special packets to Minecraft client
+6. **🔥 Black Screen Elimination**: Aggressive world rendering and camera unlock
+7. **⚡ Ultra Fast Processing**: Immediate world show with 1ms delay
+8. **🎯 Aggressive Rendering**: Force render, chunk preload, world state force
+9. **Smooth Transition**: Cleans experience bar and visual feedback
+10. **Custom Channels**: Communication with client via `nitscreen:loading` channel
+
+### Performance
+- **Minimal Overhead**: Only works during transitions
+- **Async Processing**: Non-blocking operations
+- **Memory Efficient**: Minimal memory usage
+- **Configurable Delays**: Performance settings
+
+## Troubleshooting
+
+### Common Issues
+
+#### Loading Screen Still Appears
+- Check config: `enable-smooth-transition=true`
+- Client mods may conflict
+- Enable debug mode and check logs
+
+#### 🔥 Black Screen Still Appears
+- Set `enable-ultra-fast-mode=true`
+- Check `enable-aggressive-rendering=true`
+- Try `world-render-delay-ms=5` or lower
+- Test with `world-render-delay-ms=1`
+
+#### 🚪 Login Waiting Still Exists
+- Set `enable-login-optimization=true`
+- Check `enable-mojang-bypass=true`
+- Enable debug mode and check login events
+
+#### 📦 ItemsAdder Texture Pack Loads Slowly
+- Set `enable-resource-pack-optimization=true`
+- Try `resource-pack-delay-ms=1` or `resource-pack-delay-ms=0`
+- Check `instant-load` setting in ItemsAdder config
+
+#### Commands Not Working
+- Check permissions: `nitscreen.use` and `nitscreen.admin`
+- Make sure plugin is loaded: `/velocity plugins`
+
+#### Performance Issues
+- Increase `transition-delay-ms`
+- Set `enable-preloading=false`
+- Disable debug mode
+
+### Debug Mode
+```properties
+enable-debug-mode=true
+```
+This setting enables detailed logs:
+- Player transitions
+- Packet sending status
+- Error messages
+
+## Development
+
+### Project Structure
+```
+src/main/java/com/nitscreen/
+├── NitScreenRemover.java      # Main plugin class
+├── LoadingScreenHandler.java  # Loading screen management
+├── Configuration.java         # Configuration management
+└── NitScreenCommand.java      # Command system
+```
+
+### Contributing
+1. Fork the repo
+2. Create a feature branch
+3. Commit your changes
+4. Submit a pull request
+
+## License
+MIT License - See `LICENSE` file for details.
+
+## Changelog
+
+### v1.0-SNAPSHOT
+- ✨ First release
+- 🚀 Loading screen removal feature
+- 🔥 **NEW**: Black screen completely removed
+- ⚡ **NEW**: Ultra Fast Mode - 0.05s transition
+- 🎯 **NEW**: Aggressive Rendering system
+- 💫 **NEW**: Camera unlock and world state force
+- 🚪 **NEW**: LOGIN ACCELERATION - Login waiting removed
+- 📦 **NEW**: INSTANT ITEMSADDER LOADING
+- 🛑 **NEW**: MOJANG BYPASS
+- ⚡ **NEW**: INSTANT CONNECTION
+- ⚙️ Configuration system
+- 💬 Command system
+- 🐛 Debug mode
+- 📦 Velocity 3.2.0 support
+
+## Support
+- **Issues**: Use GitHub Issues
+- **Discord**: [Discord Link]
+- **Email**: [Email Address]
+
+---
+
+<a name="turkce"></a>
 # NitScreenRemover - Velocity Eklentisi
 
 ## Açıklama
@@ -36,11 +305,9 @@ NitScreenRemover, Velocity proxy sunucularında **TÜM YÜKLEME EKRANLARINI** ka
    ```bash
    mvn clean package
    ```
-
 2. **Kurulum**:
    - `target/nitscreen-remover-1.0-SNAPSHOT.jar` dosyasını Velocity'nin `plugins` klasörüne kopyalayın
    - Velocity'yi yeniden başlatın
-
 3. **Konfigürasyon**:
    - `plugins/nitscreen-remover/config.properties` dosyası otomatik olarak oluşturulur
    - Gerekli ayarları yapın
@@ -72,40 +339,28 @@ permissions:
 ```properties
 # Smooth transition özelliği
 enable-smooth-transition=true
-
 # Sunucu preloading özelliği
 enable-preloading=true
-
 # Özel mesajlar
 enable-custom-messages=true
-
 # Transition gecikmesi (milisaniye)
 transition-delay-ms=50
-
 # Mesaj temizleme gecikmesi (milisaniye)
 message-cleanup-delay-ms=2000
-
 # Debug modu
 enable-debug-mode=false
-
 # 🔥 SIYAH EKRAN KALDIRMA - Ultra Fast Mode
 enable-ultra-fast-mode=true
-
 # 🎯 Agresif world rendering
 enable-aggressive-rendering=true
-
 # World render gecikmesi (milisaniye) - Düşük = Daha hızlı
 world-render-delay-ms=5
-
 # 🚪 LOGIN HİZLANDIRMA - Sunucu giriş beklemesini kaldır
 enable-login-optimization=true
-
 # 📦 ITEMSADDER TEXTURE PACK - Anlık yükleme
 enable-resource-pack-optimization=true
-
 # Resource pack yükleme gecikmesi (milisaniye) - 0 = Anında
 resource-pack-delay-ms=1
-
 # 🛑 MOJANG LOADING SCREEN BYPASS - Mojang ekranını atla
 enable-mojang-bypass=true
 ```
